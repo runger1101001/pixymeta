@@ -1971,7 +1971,5 @@ public class JPEGMeta {
 			os.write(bout.toByteArray());
 		}
 	}
-	
-	// Prevent from instantiation
-	private JPEGMeta() {}
+
 }
