@@ -192,7 +192,7 @@ public class JPEGMeta {
 		return marker;
 	}
 	
-	private static void copyToEnd(InputStream is, OutputStream os) throws IOException {
+	protected static void copyToEnd(InputStream is, OutputStream os) throws IOException {
 		byte[] buffer = new byte[10240]; // 10k buffer
 		int bytesRead = -1;
 		
