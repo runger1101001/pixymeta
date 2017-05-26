@@ -1953,7 +1953,7 @@ public class JPEGMeta {
 		}
 	}
 	
-	private static void writeIRB(OutputStream os, _8BIM ... bims) throws IOException {
+	protected static void writeIRB(OutputStream os, _8BIM ... bims) throws IOException {
 		if(bims != null && bims.length > 0)
 			writeIRB(os, Arrays.asList(bims));
 	}
