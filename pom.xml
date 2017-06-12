@@ -7,6 +7,44 @@
   <packaging>jar</packaging> 
   <name>PIXYMETA Java metadata library</name>
   <url>https://github.com/dragon66/pixymeta</url>
+  
+  <properties>
+    <java.version>1.8</java.version>
+  </properties>
+  
+    <distributionManagement>
+        <repository>
+            <id>cms-releases</id>
+            <name>LFRZ Archiva</name>
+            <url>https://developer.lfrz.at/nexus/content/repositories/cms-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>cms-snapshots</id>
+            <name>LFRZ CMS Snapshots</name>
+            <url>https://developer.lfrz.at/nexus/content/repositories/cms-snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+  
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
+    </build>
+  
   <repositories>
       <repository>
 	  	<id>jai-imageio</id>

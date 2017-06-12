@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pixy.image.jpeg.Marker;
 import pixy.image.jpeg.Segment;
 import pixy.image.jpeg.UnknownSegment;
@@ -15,6 +18,7 @@ import pixy.io.IOUtils;
 import pixy.meta.adobe.ImageResourceID;
 import pixy.meta.adobe._8BIM;
 import pixy.meta.iptc.IPTCDataSet;
+import pixy.string.StringUtils;
 
 /**
  * Subclass of JPEGMeta, which was getting very large.
@@ -29,6 +33,8 @@ import pixy.meta.iptc.IPTCDataSet;
  */
 public class JPEGMetaManipulator extends JPEGMeta {
 
+    public final static Logger log = LoggerFactory.getLogger(JPEGMetaManipulator.class);
+    
     /**
      * Strips and inserts metadata in one operation.
      * 
@@ -92,13 +98,16 @@ public class JPEGMetaManipulator extends JPEGMeta {
                 case COM:
                     // these blocks get stripped...
                     int skip = IOUtils.readUnsignedShortMM(is);
-                    IOUtils.skipFully(is, skip);
+                    IOUtils.skipFully(is, skip-2);
                     break;
                 case APP0: // keep image thumbnail and resolution infos
                 default: // everything else gets copied
                     int length = IOUtils.readUnsignedShortMM(is);
+                    log.trace("Copying segment "+emarker.name()+"("+StringUtils.intToHexString(emarker.getValue())+") length "+length);
                     byte[] buf = new byte[length - 2];
-                    IOUtils.readFully(is, buf);
+                    int numRead = IOUtils.read(is, buf);
+                    if (numRead!=(length-2))
+                        log.warn("Number of bytes read != size field: "+numRead+" != "+(length-2));
                     if(emarker == Marker.UNKNOWN)
                         segments.add(new UnknownSegment(marker, length, buf));
                     else
