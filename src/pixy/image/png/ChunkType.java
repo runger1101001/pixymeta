@@ -90,7 +90,11 @@ public enum ChunkType {
     	this.value = value;
         this.attribute = attribute;	
         this.ranking = ranking;
-    }    
+    }
+    
+    public boolean isCritical(){
+        return attribute==Attribute.CRITICAL;
+    }
     
     public Attribute getAttribute()
     {

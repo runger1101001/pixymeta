@@ -63,7 +63,7 @@ import pixy.string.XMLUtils;
 public class PNGMeta {
 	
 	/** PNG signature constant */
-    private static final long SIGNATURE = 0x89504E470D0A1A0AL;
+    public static final long SIGNATURE = 0x89504E470D0A1A0AL;
 	
     // Obtain a logger instance
  	private static final Logger LOGGER = LoggerFactory.getLogger(PNGMeta.class);
@@ -308,6 +308,6 @@ public class PNGMeta {
         	chunk.write(os);
         }
   	}
-  	
-  	private PNGMeta() {}
+
+
 }
