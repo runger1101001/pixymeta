@@ -6,13 +6,10 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.w3c.dom.Document;
-
 import pixy.image.png.Chunk;
 import pixy.image.png.ChunkType;
 import pixy.image.png.TextBuilder;
 import pixy.io.IOUtils;
-import pixy.string.XMLUtils;
 
 public class PNGMetaManipulator extends PNGMeta {
 
@@ -52,6 +49,9 @@ public class PNGMetaManipulator extends PNGMeta {
                 itr.remove(); // drop it!
             }            
         }
+        
+        // add a text chunk for comment
+        //chunks.add(new TextBuilder(ChunkType.TEXT).keyword("Comment").text("Exported by LFRZ Magnolia CMS").build());
         
         // Create XMP textual chunk
         if (xmpDoc!=null){
