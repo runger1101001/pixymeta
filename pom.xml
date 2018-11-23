@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion> 
   <groupId>com.github.dragon66</groupId>
   <artifactId>pixymeta</artifactId>
-  <version>1.1-jaardvark-SNAPSHOT</version>
+  <version>1.2-jaardvark-SNAPSHOT</version>
   <packaging>jar</packaging> 
   <name>PIXYMETA Java metadata library</name>
   <url>https://github.com/dragon66/pixymeta</url>
